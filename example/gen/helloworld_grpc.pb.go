@@ -36,7 +36,7 @@ func NewGreeterServiceClient(cc grpc.ClientConnInterface) GreeterServiceClient {
 
 func (c *greeterServiceClient) SayHello(ctx context.Context, in *HelloRequest, opts ...grpc.CallOption) (*HelloReply, error) {
 	out := new(HelloReply)
-	err := c.cc.Invoke(ctx, "/example.GreeterService/SayHello", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hello.GreeterService/SayHello", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -82,7 +82,7 @@ func _GreeterService_SayHello_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/example.GreeterService/SayHello",
+		FullMethod: "/hello.GreeterService/SayHello",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(GreeterServiceServer).SayHello(ctx, req.(*HelloRequest))
@@ -94,7 +94,7 @@ func _GreeterService_SayHello_Handler(srv interface{}, ctx context.Context, dec 
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var GreeterService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "example.GreeterService",
+	ServiceName: "hello.GreeterService",
 	HandlerType: (*GreeterServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
